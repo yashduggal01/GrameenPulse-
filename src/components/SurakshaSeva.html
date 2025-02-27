@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suraksha Seva</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            text-align: center;
+            transition: background 0.5s, color 0.5s;
+        }
+
+        body.light-mode {
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            color: #333;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff4b5c, #8a2be2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: #FFD700;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            color: #FFA500;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background: #FFD700;
+            margin: 4px 0;
+            transition: 0.3s;
+        }
+
+        .container {
+            margin-top: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .sos-button {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            padding: 20px 50px;
+            font-size: 1.5em;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.5);
+            animation: pulse 1.5s infinite;
+        }
+
+        .sos-button:hover {
+            background: darkred;
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .emergency-contacts {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .emergency-contacts button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .emergency-contacts button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .incident-report {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 500px;
+            margin-top: 20px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .incident-report input, .incident-report textarea {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            font-size: 1em;
+        }
+
+        .incident-list {
+            width: 80%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+
+        .incident-card {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(255, 255, 255, 0.2);
+            transition: 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                flex-direction: column;
+                background: rgba(0, 0, 0, 0.9);
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                padding: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .container {
+                margin-top: 80px;
+            }
+
+            .sos-button {
+                padding: 15px 30px;
+                font-size: 1.2em;
+            }
+
+            .emergency-contacts button {
+                padding: 8px 15px;
+                font-size: 1em;
+            }
+
+            .incident-report {
+                width: 90%;
+            }
+
+            .incident-list {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-text">GraminPulsePlus</div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="GraminSamadhan.html">Gramin Samadhan</a>
+            <a href="SurakshaSeva.html">Suraksha Seva</a>
+            <a href="SwasthyaSeva.html">Swasthya Seva</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Suraksha Seva</h1>
+        <p>Ensuring safety and quick emergency response.</p>
+        <button class="sos-button" onclick="callEmergency(112)">🚨 SOS Alert</button>
+        
+        <div class="emergency-contacts">
+            <button onclick="callEmergency(100)">📞 Police</button>
+            <button onclick="callEmergency(102)">🚑 Ambulance</button>
+            <button onclick="callEmergency(101)">🔥 Fire</button>
+        </div>
+
+        <div class="incident-report">
+            <h2>Report an Incident</h2>
+            <input type="text" id="incidentType" placeholder="Incident Type">
+            <textarea id="description" placeholder="Description"></textarea>
+            <button onclick="submitReport()">Submit</button>
+        </div>
+        
+        <div class="incident-list" id="incidentList">
+            <h2>Reported Incidents</h2>
+        </div>
+    </div>
+
+    <div class="theme-toggle" onclick="toggleTheme()">🌓</div>
+
+    <script>
+        // Emergency Call Function
+        function callEmergency(number) {
+            window.location.href = `tel:${number}`;
+        }
+
+        // Submit Incident Report
+        function submitReport() {
+            const incidentType = document.getElementById('incidentType').value;
+            const description = document.getElementById('description').value;
+            const incidentList = document.getElementById('incidentList');
+            if (incidentType && description) {
+                incidentList.innerHTML += `<div class='incident-card'>${incidentType} - <span>Status: Pending</span><br>${description}</div>`;
+                alert('Incident Report Submitted!');
+                document.getElementById('incidentType').value = '';
+                document.getElementById('description').value = '';
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+
+        // Toggle Dark/Light Mode
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+        }
+
+        // Toggle Hamburger Menu
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+        }
+
+        // Live Location Sharing (Example)
+        function shareLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const { latitude, longitude } = position.coords;
+                    alert(`Your location: ${latitude}, ${longitude}`);
+                });
+            } else {
+                alert('Geolocation is not supported in your browser!');
+            }
+        }
+    </script>
+</body>
+</html>
+

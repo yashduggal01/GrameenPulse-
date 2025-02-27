@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About GraminPulse+</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #a6ddc9, #f5dea4);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #FFD700;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s, transform 0.3s;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #FFA500;
+            transform: scale(1.1);
+        }
+
+        .about {
+            padding: 100px 20px 20px;
+            text-align: center;
+        }
+
+        .about h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #FFD700;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .about p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .about h2 {
+            font-size: 2rem;
+            margin-top: 2rem;
+            color: #FFA500;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .about ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .about ul li {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .about ul li strong {
+            color: #FFD700;
+        }
+
+        .features {
+            padding: 5rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #FFD700;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+        }
+
+        .cta-button {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            background: linear-gradient(45deg, #99c3ce, #00ffc8);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 198, 255, 0.4);
+            margin-top: 2rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 198, 255, 0.6);
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        footer .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        footer .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin: 1rem;
+        }
+
+        footer .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: #FFD700;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        footer .footer-section p, footer .footer-section ul, footer .footer-section form {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        footer .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        footer .footer-section ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer .footer-section ul li a:hover {
+            color: #FFD700;
+        }
+
+        footer .footer-section form input, footer .footer-section form textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: none;
+            border-radius: 5px;
+        }
+
+        footer .footer-section form button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            background: #00c6ff;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        footer .footer-section form button:hover {
+            background: #0072ff;
+        }
+
+        footer .footer-bottom {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="GraminSamadhan.html">Gramin Samadhan</a>
+            <a href="SurakshaSeva.html">Suraksha Seva</a>
+            <a href="SwasthyaSeva.html">Swasthya Seva</a>
+            <a href="Login.html">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="about">
+            <h1>About GraminPulse+</h1>
+            <p>GraminPulse+ is a smart rural development platform designed to empower rural communities through technology. Our mission is to enhance the quality of life in rural areas by providing essential services and resources that promote civic engagement, safety, and health.</p>
+            
+            <h2>Our Vision</h2>
+            <p>We envision a connected rural ecosystem where every individual has access to the tools and information they need to thrive. By leveraging technology, we aim to bridge the gap between rural communities and essential services.</p>
+            
+            <h2>Our Services</h2>
+            <ul>
+                <li><strong>Gramin Samadhan:</strong> A platform for reporting civic issues and tracking resolutions.</li>
+                <li><strong>Suraksha Seva:</strong> Safety services including emergency response and incident reporting.</li>
+                <li><strong>Swasthya Seva:</strong> A healthcare hub providing access to medical services and health resources.</li>
+            </ul>
+            
+            <h2>Join Us</h2>
+            <p>Become a part of the GraminPulse+ community and help us make a difference in rural development. Together, we can create a brighter future for our villages.</p>
+        </section>
+
+        <section class="features">
+            <h2>Our Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-hand-holding-water feature-icon"></i>
+                    <h3>Water Management</h3>
+                    <p>Smart solutions for sustainable water resource management.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-seedling feature-icon"></i>
+                    <h3>Agricultural Support</h3>
+                    <p>Modern farming techniques and crop management systems.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-clinic-medical feature-icon"></i>
+                    <h3>Health Services</h3>
+                    <p>Telemedicine and mobile healthcare solutions.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-solar-panel feature-icon"></i>
+                    <h3>Renewable Energy</h3>
+                    <p>Solar and wind energy solutions for rural areas.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-wifi feature-icon"></i>
+                    <h3>Internet Connectivity</h3>
+                    <p>High-speed internet access for remote villages.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chalkboard-teacher feature-icon"></i>
+                    <h3>Skill Development</h3>
+                    <p>Training programs for enhancing rural skills.</p>
+                </div>
+            </div>
+            <button class="cta-button" onclick="window.location.href='../index.html#features'">Explore Features</button>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>About GraminPulse+</h3>
+                <p>GraminPulse+ is dedicated to empowering rural India through innovative solutions in water management, agriculture, healthcare, and more.</p>
+            </div>
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html#home">Home</a></li>
+                    <li><a href="../index.html#features">Features</a></li>
+                    <li><a href="../index.html#services">Services</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact-form">
+                <h3>Contact Us</h3>
+                <form>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" required></textarea>
+                    <button type="submit" class="cta-button">Send</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2023 GraminPulse+. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

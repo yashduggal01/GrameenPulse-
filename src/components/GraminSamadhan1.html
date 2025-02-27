@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gramin Samadhan</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #141E30, #243B55);
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    padding: 20px;
+    font-size: 1.5em;
+    background: black;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px;
+}
+
+.stat-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    width: 120px;
+    font-size: 1.2em;
+}
+
+.filters {
+    margin: 20px;
+}
+
+.filters input, .filters select {
+    padding: 8px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+#complaint-list {
+    margin: 20px auto;
+    width: 80%;
+}
+
+.complaint-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    margin: 10px;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.add-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: yellow;
+    color: black;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5em;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #243B55;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    color: white;
+    text-align: center;
+}
+
+.close {
+    float: right;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Gramin Samadhan</h1>
+        <p>Report civic issues and track resolutions in real time.</p>
+    </header>
+
+    <!-- Statistics Dashboard -->
+    <section class="stats">
+        <div class="stat-box"><strong>Total Issues:</strong> <span id="total-count">0</span></div>
+        <div class="stat-box"><strong>Resolved:</strong> <span id="resolved-count">0</span></div>
+        <div class="stat-box"><strong>In Progress:</strong> <span id="inprogress-count">0</span></div>
+        <div class="stat-box"><strong>Pending:</strong> <span id="pending-count">0</span></div>
+    </section>
+
+    <!-- Search & Filters -->
+    <section class="filters">
+        <input type="text" id="search-bar" placeholder="Search issues..." oninput="filterComplaints()">
+        <select id="category-filter" onchange="filterComplaints()">
+            <option value="all">All Categories</option>
+            <option value="infrastructure">Infrastructure</option>
+            <option value="utilities">Utilities</option>
+            <option value="electricity">Electricity</option>
+        </select>
+        <select id="status-filter" onchange="filterComplaints()">
+            <option value="all">All Status</option>
+            <option value="pending">Pending</option>
+            <option value="in-progress">In Progress</option>
+            <option value="resolved">Resolved</option>
+        </select>
+    </section>
+
+    <!-- Complaints List -->
+    <section id="complaint-list"></section>
+
+    <!-- Floating Add Button -->
+    <button class="add-btn" onclick="openModal()">➕</button>
+
+    <!-- Report Issue Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Report an Issue</h2>
+            <input type="text" id="issue-type" placeholder="Issue Type">
+            <select id="issue-category">
+                <option value="infrastructure">Infrastructure</option>
+                <option value="utilities">Utilities</option>
+                <option value="electricity">Electricity</option>
+            </select>
+            <select id="issue-priority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+            <textarea id="issue-description" placeholder="Detailed description..."></textarea>
+            <input type="text" id="issue-location" placeholder="Location">
+            <button onclick="submitComplaint()">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        let complaints = [
+    { id: "1", issue: "Broken Road", category: "infrastructure", status: "pending", description: "Deep potholes", location: "Main Street" },
+    { id: "2", issue: "Water Supply Issue", category: "utilities", status: "in-progress", description: "No water for 2 days", location: "East Colony" },
+    { id: "3", issue: "Street Light Issue", category: "electricity", status: "resolved", description: "3 lights not working", location: "Market Road" }
+];
+
+function displayComplaints() {
+    const list = document.getElementById("complaint-list");
+    list.innerHTML = "";
+
+    complaints.forEach(c => {
+        const item = document.createElement("div");
+        item.className = "complaint-card";
+        item.innerHTML = `
+            <strong>${c.issue}</strong> (${c.status.toUpperCase()})<br>
+            ${c.description}<br>
+            <small>${c.location}</small>
+        `;
+        list.appendChild(item);
+    });
+
+    document.getElementById("total-count").innerText = complaints.length;
+    document.getElementById("resolved-count").innerText = complaints.filter(c => c.status === "resolved").length;
+    document.getElementById("inprogress-count").innerText = complaints.filter(c => c.status === "in-progress").length;
+    document.getElementById("pending-count").innerText = complaints.filter(c => c.status === "pending").length;
+}
+
+function openModal() {
+    document.getElementById("modal").style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+function submitComplaint() {
+    const issue = document.getElementById("issue-type").value;
+    const category = document.getElementById("issue-category").value;
+    complaints.push({ id: Date.now().toString(), issue, category, status: "pending", description: "New complaint", location: "Unknown" });
+    closeModal();
+    displayComplaints();
+}
+
+displayComplaints();
+
+    </script>>
+</body>
+</html>

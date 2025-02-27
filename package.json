@@ -1,0 +1,33 @@
+{
+  "name": "GraminPulsePlus",
+  "version": "1.0.0",
+  "description": "A smart rural development platform for civic engagement, safety, and healthcare.",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "live-server src",
+    "build": "echo 'Build process not defined yet.'"
+  },
+  "keywords": [
+    "rural",
+    "development",
+    "civic",
+    "safety",
+    "healthcare"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.0"
+  },
+  "homepage": "https://github.com/yourusername/GraminPulsePlus",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/GraminPulsePlus.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/GraminPulsePlus/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
